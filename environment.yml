@@ -36,4 +36,5 @@ dependencies:
       - nbclean>=0.3.2
       - jax==0.4.7
       - jaxlib==0.4.7
+      - packaging
       - git+https://github.com/bedapub/besca.git
