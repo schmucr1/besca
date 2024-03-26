@@ -15,6 +15,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Copy the "workbooks" folder from the repository to the desired path in the image
+COPY workbooks /opt/besca/workbooks
+
+# Set the appropriate permissions for the copied folder
+RUN chown -R $NB_UID:$NB_GID /opt/besca/workbooks
+
 # Switch back to the notebook user
 USER $NB_UID
 
@@ -22,7 +28,6 @@ ARG PIP_NO_CACHE_DIR=1
 
 COPY environment.yml /tmp/
 
-# Update the environment, install ipykernel and create a kernel spec
 RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
     mamba install -n besca -c conda-forge ipykernel && \
     conda run -n besca python -m ipykernel install --user --name besca --display-name "Python 3" && \
