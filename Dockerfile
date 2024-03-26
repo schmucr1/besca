@@ -9,9 +9,10 @@ LABEL author="Roland Schmucki" \
 WORKDIR /usr/src/app
 
 # Install system dependencies required for building certain Python packages
+# Install Graphviz (includes neato, for annotation notebook)
 USER root
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential gcc git && \
+    apt-get install -y --no-install-recommends build-essential gcc git graphviz && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
