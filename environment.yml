@@ -29,6 +29,7 @@ dependencies:
   - pytest
   - deprecation
   - gseapy
+  - graphviz # for neato in annotation notebook
   - pip
   - pip:
       - scikit_learn>=1.0.0
