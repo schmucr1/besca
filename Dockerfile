@@ -1,6 +1,5 @@
 # Use JupyterLab as the base image
 FROM jupyter/base-notebook:python-3.9
-#FROM jupyter/base-notebook:latest
 
 LABEL author="Roland Schmucki" \
       description="besca docker image" \
@@ -10,9 +9,10 @@ LABEL author="Roland Schmucki" \
 WORKDIR /usr/src/app
 
 # Install system dependencies required for building certain Python packages
+# Install system dependencies required for building certain Python packages
 USER root
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential gcc && \
+    apt-get install -y --no-install-recommends build-essential gcc git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -25,13 +25,6 @@ COPY environment.yml /tmp/
 
 RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
     conda clean --all -f -y
-
-# Copy the project files into the container
-#COPY . .
-
-# Install any needed packages specified in requirements.txt
-#COPY requirements.txt ./
-#RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
