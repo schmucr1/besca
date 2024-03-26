@@ -33,6 +33,11 @@ RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
     conda run -n besca python -m ipykernel install --user --name besca --display-name "Python 3" && \
     conda clean --all -f -y
 
+# Set "besca" as the default kernel
+USER root
+RUN echo "c.MultiKernelManager.default_kernel_name = 'besca'" >> /etc/jupyter/jupyter_notebook_config.py
+USER $NB_UID
+
 # Change permissions for path in order to be able to download test data sets
 RUN mkdir -p /opt/conda/envs/besca/lib/python3.9/site-packages/besca/datasets \
     && chmod -R 777 /opt/conda/envs/besca/lib/python3.9/site-packages/besca/datasets
