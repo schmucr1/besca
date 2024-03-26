@@ -23,7 +23,7 @@ ARG PIP_NO_CACHE_DIR=1
 
 COPY environment.yml /tmp/
 
-RUN mamba env update -n base -f /tmp/environment.yml --prune && \
+RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
     conda clean --all -f -y
 
 # Copy the project files into the container
