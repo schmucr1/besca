@@ -1,5 +1,6 @@
 # Use JupyterLab as the base image
-FROM jupyter/base-notebook:latest
+FROM jupyter/base-notebook:python-3.9
+#FROM jupyter/base-notebook:latest
 
 LABEL author="Roland Schmucki" \
       description="besca docker image" \
