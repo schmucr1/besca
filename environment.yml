@@ -1,4 +1,4 @@
-name: besca_dev
+name: besca
 channels:
   - conda-forge
   - bioconda
@@ -37,4 +37,5 @@ dependencies:
       - jax==0.4.7
       - jaxlib==0.4.7
       - packaging
-      - git+https://github.com/bedapub/besca.git
+      - git+https://github.com/schmucr1/besca.git@dev
+#      - git+https://github.com/bedapub/besca.git
