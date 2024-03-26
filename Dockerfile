@@ -4,11 +4,10 @@ FROM jupyter/base-notebook:python-3.9
 LABEL author="Roland Schmucki" \
       description="besca docker image" \
       maintainer="roland.schmucki@roche.com"
-      
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install system dependencies required for building certain Python packages
 # Install system dependencies required for building certain Python packages
 USER root
 RUN apt-get update && \
@@ -23,7 +22,10 @@ ARG PIP_NO_CACHE_DIR=1
 
 COPY environment.yml /tmp/
 
+# Update the environment, install ipykernel and create a kernel spec
 RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
+    mamba install -n besca -c conda-forge ipykernel && \
+    conda run -n besca python -m ipykernel install --user --name besca --display-name "Python 3" && \
     conda clean --all -f -y
 
 # Change permissions for path in order to be able to download test data sets
