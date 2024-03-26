@@ -16,7 +16,7 @@ dependencies:
   - seaborn
   - mygene
   - pandas
-  - matplotlib
+  - matplotlib=3.7.1
   - python-igraph
   - leidenalg
   - scanorama
