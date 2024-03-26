@@ -5,8 +5,8 @@ FROM jupyter/base-notebook:latest
 WORKDIR /usr/src/app
 
 # Install any needed packages specified in requirements.txt
-COPY environment.yml ./
-RUN pip install --no-cache-dir -r environment.yml
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
