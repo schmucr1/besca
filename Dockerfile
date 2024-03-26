@@ -26,6 +26,10 @@ COPY environment.yml /tmp/
 RUN mamba env update -n besca -f /tmp/environment.yml --prune && \
     conda clean --all -f -y
 
+# Change permissions for path in order to be able to download test data sets
+RUN mkdir -p /opt/conda/envs/besca/lib/python3.9/site-packages/besca/datasets \
+    && chmod -R 777 /opt/conda/envs/besca/lib/python3.9/site-packages/besca/datasets
+
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
 
